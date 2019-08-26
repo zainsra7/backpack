@@ -69,7 +69,7 @@ const BpkModal = (props: Props) => {
 
   const containerClass = [getClassName('bpk-modal__container')];
 
-  if (fullScreen || isIphone) {
+  if (fullScreen) {
     containerClass.push(getClassName('bpk-modal__container--full-screen'));
   } else if (fullScreenOnMobile) {
     containerClass.push(
