@@ -40,6 +40,7 @@ const BpkAccordionItem = props => {
     onClick,
     tagName,
     textStyle,
+    bold,
     ...rest
   } = props;
 
@@ -73,6 +74,7 @@ const BpkAccordionItem = props => {
           <span className={getClassName('bpk-accordion__flex-container')}>
             <BpkText
               textStyle={textStyle}
+              bold={bold}
               tagName={tagName}
               className={getClassName('bpk-accordion__title-text')}
             >
@@ -101,6 +103,7 @@ BpkAccordionItem.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  bold: PropTypes.bool,
   expanded: PropTypes.bool,
   onClick: PropTypes.func,
   tagName: PropTypes.string,
@@ -108,6 +111,7 @@ BpkAccordionItem.propTypes = {
 };
 
 BpkAccordionItem.defaultProps = {
+  bold: false,
   expanded: false,
   onClick: () => null,
   tagName: 'span',

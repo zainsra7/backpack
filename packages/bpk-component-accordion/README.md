@@ -76,6 +76,7 @@ export default () => (
 | children  | node     | true     | -             |
 | id        | string   | true     | -             |
 | title     | string   | true     | -             |
+| bold      | bool     | false    | null          |
 | expanded  | bool     | false    | false         |
 | onClick   | func     | false    | () => null    |
 | tagName   | string   | false    | span          |

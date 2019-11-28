@@ -251,4 +251,17 @@ storiesOf('bpk-component-accordion', module)
         <AirportsContent />
       </BpkAccordionItem>
     </SingleItemAccordion>
+  ))
+  .add('Bold title', () => (
+    <SingleItemAccordion>
+      <BpkAccordionItem bold id="stops" title="Stops" initiallyExpanded>
+        <StopsContent />
+      </BpkAccordionItem>
+      <BpkAccordionItem bold id="airlines" title="Airlines">
+        <AirlinesContent />
+      </BpkAccordionItem>
+      <BpkAccordionItem bold id="airports" title="Airports">
+        <AirportsContent />
+      </BpkAccordionItem>
+    </SingleItemAccordion>
   ));
