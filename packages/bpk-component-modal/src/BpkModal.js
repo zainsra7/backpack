@@ -51,6 +51,7 @@ export type Props = {
   closeOnEscPressed: boolean,
   renderTarget: ?() => ?HTMLElement,
   target: ?((() => ?HTMLElement) | Element<any>),
+  style: ?Object,
 };
 
 const BpkModal = (props: Props) => {
@@ -109,6 +110,7 @@ export const propTypes = {
   target: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   closeOnScrimClick: PropTypes.bool,
   closeOnEscPressed: PropTypes.bool,
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 export const defaultProps = {
@@ -120,6 +122,7 @@ export const defaultProps = {
   ),
   closeOnScrimClick: true,
   closeOnEscPressed: true,
+  style: null,
 };
 
 BpkModal.propTypes = { ...propTypes };

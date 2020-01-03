@@ -16,12 +16,14 @@
  * limitations under the License.
  */
 
+/* @flow strict */
+
 import {
   unstable_renderSubtreeIntoContainer, // eslint-disable-line camelcase
   unmountComponentAtNode,
   findDOMNode,
 } from 'react-dom';
-import { Component } from 'react';
+import { type Node, Component } from 'react';
 import assign from 'object-assign';
 import PropTypes from 'prop-types';
 
@@ -29,7 +31,24 @@ const KEYCODES = {
   ESCAPE: 27,
 };
 
-class Portal extends Component {
+export type Props = {
+  children: Node,
+  isOpen: boolean,
+  beforeClose: ?func,
+  className: ?string,
+  onClose: (event: SyntheticEvent<>) => void,
+  onOpen: (event: SyntheticEvent<>) => void,
+  onRender: () => mixed,
+  style: {},
+  renderTarget: ?() => mixed,
+  target: ?(() => ?HTMLElement) | Element<any>,
+  targetRef: ?() => mixed,
+  closeOnEscPressed: boolean,
+};
+
+export type State = {};
+
+class Portal extends Component<Props, State> {
   constructor() {
     super();
 

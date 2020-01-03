@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+/* @flow strict */
+
 import isRTL from './isRTL';
 
 describe('isRTL undefined', () => {
