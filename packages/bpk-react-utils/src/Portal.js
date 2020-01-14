@@ -16,12 +16,14 @@
  * limitations under the License.
  */
 
+/* @flow strict */
+
 import {
   unstable_renderSubtreeIntoContainer, // eslint-disable-line camelcase
   unmountComponentAtNode,
   findDOMNode,
 } from 'react-dom';
-import { Component } from 'react';
+import { type Node, Component } from 'react';
 import assign from 'object-assign';
 import PropTypes from 'prop-types';
 
@@ -29,7 +31,64 @@ const KEYCODES = {
   ESCAPE: 27,
 };
 
-class Portal extends Component {
+export type Props = {
+  children: Node,
+  isOpen: boolean,
+  beforeClose: ?(() => void) => void,
+  className: ?string,
+  onClose: (event: SyntheticEvent<>) => ?void,
+  onOpen: (event: SyntheticEvent<>) => ?void,
+  onRender: () => mixed,
+  style: ?{},
+  renderTarget: ?() => mixed,
+  target: ?(() => ?HTMLElement) | HTMLElememnt,
+  targetRef: ?() => mixed,
+  closeOnEscPressed: boolean,
+};
+
+export type State = {};
+
+class Portal extends Component<Props, State> {
+  shouldClose: boolean;
+
+  portalElement: ?HTMLElement;
+
+  onDocumentMouseUp: () => mixed;
+
+  onDocumentMouseDown: () => mixed;
+
+  onDocumentKeyUp: () => mixed;
+
+  onDocumentKeyDown: () => mixed;
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    beforeClose: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+    className: PropTypes.string,
+    onClose: PropTypes.func,
+    onOpen: PropTypes.func,
+    onRender: PropTypes.func,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    renderTarget: PropTypes.func,
+    target: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+    targetRef: PropTypes.func,
+    closeOnEscPressed: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    beforeClose: null,
+    className: null,
+    onClose: () => null,
+    onOpen: () => null,
+    onRender: () => null,
+    style: null,
+    renderTarget: null,
+    target: null,
+    targetRef: null,
+    closeOnEscPressed: true,
+  };
+
   constructor() {
     super();
 
@@ -58,7 +117,7 @@ class Portal extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (this.props.isOpen) {
       if (!prevProps.isOpen) {
         this.open();
@@ -170,26 +229,20 @@ class Portal extends Component {
       return;
     }
 
-    this.portalElement = document.createElement('div');
+    const doc: window = document;
+
+    this.portalElement = doc.createElement('div');
     this.getRenderTarget().appendChild(this.portalElement);
 
     const passiveArgs = this.supportsPassiveEvents()
       ? { passive: true }
       : false;
-    document.addEventListener(
-      'touchstart',
-      this.onDocumentMouseDown,
-      passiveArgs,
-    );
-    document.addEventListener(
-      'touchmove',
-      this.onDocumentMouseMove,
-      passiveArgs,
-    );
-    document.addEventListener('touchend', this.onDocumentMouseUp, passiveArgs);
-    document.addEventListener('mousedown', this.onDocumentMouseDown, false);
-    document.addEventListener('mouseup', this.onDocumentMouseUp, false);
-    document.addEventListener('keydown', this.onDocumentKeyDown, false);
+    doc.addEventListener('touchstart', this.onDocumentMouseDown, passiveArgs);
+    doc.addEventListener('touchmove', this.onDocumentMouseMove, passiveArgs);
+    doc.addEventListener('touchend', this.onDocumentMouseUp, passiveArgs);
+    doc.addEventListener('mousedown', this.onDocumentMouseDown, false);
+    doc.addEventListener('mouseup', this.onDocumentMouseUp, false);
+    doc.addEventListener('keydown', this.onDocumentKeyDown, false);
 
     if (this.props.style) {
       assign(this.portalElement.style, this.props.style);
@@ -216,12 +269,14 @@ class Portal extends Component {
       renderTarget.removeChild(this.portalElement);
     }
 
-    document.removeEventListener('touchstart', this.onDocumentMouseDown);
-    document.removeEventListener('touchmove', this.onDocumentMouseMove);
-    document.removeEventListener('touchend', this.onDocumentMouseUp);
-    document.removeEventListener('mousedown', this.onDocumentMouseDown);
-    document.removeEventListener('mouseup', this.onDocumentMouseUp);
-    document.removeEventListener('keydown', this.onDocumentKeyDown);
+    const doc: window = document;
+
+    doc.removeEventListener('touchstart', this.onDocumentMouseDown);
+    doc.removeEventListener('touchmove', this.onDocumentMouseMove);
+    doc.removeEventListener('touchend', this.onDocumentMouseUp);
+    doc.removeEventListener('mousedown', this.onDocumentMouseDown);
+    doc.removeEventListener('mouseup', this.onDocumentMouseUp);
+    doc.removeEventListener('keydown', this.onDocumentKeyDown);
 
     this.portalElement = null;
   }
@@ -238,14 +293,14 @@ class Portal extends Component {
           supportsPassiveOption = true;
         },
       });
-      window.addEventListener('test', null, opts);
+      (window: window).addEventListener('test', null, opts);
     } catch (e) {
       return false;
     }
     return supportsPassiveOption;
   }
 
-  renderPortal(cb = () => {}) {
+  renderPortal(cb: () => mixed = () => {}) {
     // If the `target` prop is null, it's fine that there is no targetElement
     // Otherwise, if a `target` is provided, we don't render if we cannot find the respective element
     const missesExpectedTarget = this.props.target && !this.getTargetElement();
@@ -271,33 +326,5 @@ class Portal extends Component {
     return typeof this.props.target === 'function' ? null : this.props.target;
   }
 }
-
-Portal.propTypes = {
-  children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  beforeClose: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
-  className: PropTypes.string,
-  onClose: PropTypes.func,
-  onOpen: PropTypes.func,
-  onRender: PropTypes.func,
-  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  renderTarget: PropTypes.func,
-  target: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  targetRef: PropTypes.func,
-  closeOnEscPressed: PropTypes.bool,
-};
-
-Portal.defaultProps = {
-  beforeClose: null,
-  className: null,
-  onClose: () => null,
-  onOpen: () => null,
-  onRender: () => null,
-  style: null,
-  renderTarget: null,
-  target: null,
-  targetRef: null,
-  closeOnEscPressed: true,
-};
 
 export default Portal;
