@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+/* @flow strict */
+
 import assign from 'object-assign';
 import PropTypes from 'prop-types';
 import React from 'react';
