@@ -19,6 +19,15 @@
 @import '~bpk-mixins';
 
 .bpk-datepicker {
+  &__input {
+    text-align: inherit;
+
+    &--placeholder {
+      font-style: italic;
+      color: $bpk-color-sky-gray-tint-02;
+    }
+  }
+
   &__calendar {
     margin: 0 auto;
   }

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import BpkInput, { withOpenEvents } from 'bpk-component-input';
+import BpkInput from 'bpk-component-input';
 import BpkModal from 'bpk-component-modal';
 import BpkPopover from 'bpk-component-popover';
 import { cssModules } from 'bpk-react-utils';
@@ -28,8 +28,6 @@ import BpkCalendar, { CustomPropTypes } from 'bpk-component-calendar';
 import STYLES from './BpkDatepicker.scss';
 
 const getClassName = cssModules(STYLES);
-
-const Input = withOpenEvents(BpkInput);
 
 class BpkDatepicker extends Component {
   constructor(props) {
@@ -89,27 +87,32 @@ class BpkDatepicker extends Component {
       ...rest
     } = this.props;
 
-    const dateLabel = date ? formatDateFull(date) : '';
+    const { placeholder, ...inputPropsRest } = inputProps;
+
+    const dateLabel = date ? formatDateFull(date) : placeholder || '';
 
     // The following props are not used in render
     delete rest.onDateSelect;
     delete rest.isOpen;
 
     const inputComponent = (
-      <Input
+      <BpkInput
         id={id}
+        type="button"
         name={`${id}_input`}
-        value={date ? formatDate(date) : ''}
-        className={getClassName('bpk-datepicker__input')}
+        value={dateLabel}
+        className={getClassName(
+          'bpk-datepicker__input',
+          !date && 'bpk-datepicker__input--placeholder',
+        )}
         aria-live="assertive"
         aria-atomic="true"
         aria-label={dateLabel}
         onChange={() => null}
-        onOpen={this.onOpen}
+        onClick={this.onOpen}
         isOpen={this.state.isOpen}
-        readOnly
         valid={valid}
-        {...inputProps}
+        {...inputPropsRest}
       />
     );
 
