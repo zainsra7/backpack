@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BpkSkipLink should render correctly 1`] = `
+<div
+  className="bpk-skip-link"
+>
+  I am an example component.
+</div>
+`;
+
+exports[`BpkSkipLink should support arbitrary props 1`] = `
+<div
+  className="bpk-skip-link"
+  testID="123"
+>
+  I am an example component.
+</div>
+`;
+
+exports[`BpkSkipLink should support custom class names 1`] = `
+<div
+  className="bpk-skip-link custom-classname"
+>
+  I am an example component.
+</div>
+`;
