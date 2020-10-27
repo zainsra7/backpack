@@ -33,6 +33,12 @@ jobs:
     - name: Test
       run: npm test
     
+    - name: Danger
+      run: npm run danger
+      shell: bash -l {0}
+      env:
+        GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+    
     - name: Build Storybook
       if: github.ref == 'refs/heads/master'
       run: npm run storybook:dist
