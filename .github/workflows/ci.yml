@@ -5,6 +5,8 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  pull_request_target:
+    branches: [master]
 
 defaults:
   run:
@@ -27,6 +29,24 @@ jobs:
         run: |
           nvm use
           npm ci
+
+      - name: Get file changes
+        id: files
+        uses: futuratrepadeira/changed-files@v3.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print file changes
+        run: print $FILES
+        env:
+          FILES: '${{ steps.files.outputs.files_updated }} ${{ steps.files.outputs.files_created }}'
+
+      - name: Cultural Linting
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const script = require(`${process.env.GITHUB_WORKSPACE}/dangerfile.js`)
+            console.log(script('test-user', ['packages/bpk-component-foo/src/index.js'], []))
 
       - name: Build Backpack
         run: |
