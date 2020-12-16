@@ -1,6 +1,6 @@
 {
   "name": "bpk-component-navigation-bar",
-  "version": "2.2.53",
+  "version": "2.2.61",
   "description": "Backpack nativation bar component.",
   "license": "Apache-2.0",
   "repository": {
@@ -12,20 +12,20 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "gitHead": "9ea9c15278c89af54c0026e813b3866be4016f39",
+  "gitHead": "02a5949a3a8de21512e51c9f067087410ac521e6",
   "dependencies": {
-    "bpk-component-close-button": "^2.0.91",
-    "bpk-component-link": "^2.1.19",
-    "bpk-component-text": "^3.1.25",
-    "bpk-mixins": "^20.1.7",
-    "bpk-react-utils": "^3.0.7",
+    "bpk-component-close-button": "^2.0.98",
+    "bpk-component-link": "^2.1.26",
+    "bpk-component-text": "^3.1.32",
+    "bpk-mixins": "^20.1.14",
+    "bpk-react-utils": "^3.0.8",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "bpk-component-icon": "^8.2.29",
-    "bpk-tokens": "^36.0.1"
+    "bpk-component-icon": "^8.3.5",
+    "bpk-tokens": "^36.0.2"
   }
 }

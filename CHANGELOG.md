@@ -2,6 +2,58 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 2020-12-11
+
+**Fixed:**
+ - bpk-component-close-button:
+   - Fixed the size of focus indicators in Chrome so that they don't touch the close icon.
+
+# 2020-12-10
+
+**Added:**
+ - bpk-component-skip-link:
+   - New skip-link component that helps screen-reader users and keyboard-only users navigate faster.
+# 2020-12-04
+
+**Fixed:**
+ - bpk-component-icon: 8.3.0 => 8.3.1
+ - bpk-svgs: 12.2.0 => 12.2.1
+   - `price-tag` icon fixed to be centered and correct size.
+
+# 2020-12-03
+
+**Added:**
+ - bpk-component-icon: 8.2.30 => 8.3.0
+ - bpk-svgs: 12.1.18 => 12.2.0
+   - New `price-tag` icon.
+
+# 2020-12-02
+
+**Fixed:**
+ - bpk-component-datatable: 2.0.48 => 2.0.49
+   - `rowClassName` will now be applied to the row properly.
+- bpk-component-checkbox: 2.2.20 => 2.2.21
+  - Fixed an issue where checked checkboxes didn't always display the check.
+
+# 2020-12-02
+
+**Fixed:**
+- bpk-component-datatable: 2.0.47 => 2.0.48
+  - The column heading label no longer has `white-space: nowrap;` so it should wrap properly when the title label is too long for the column.
+# 2020-11-26
+
+**Added:**
+- bpk-component-image: 4.2.0 => 4.3.0
+  - Flow types are now exported from `bpk-component-image`.
+
+# 2020-11-24
+
+ - bpk-component-aria-live: `1.0.0`
+   - Added a new `BpkAriaLive` component to simplify adding `aria-live` regions to pages.
+
+ - bpk-component-image: `4.1.1 => 4.2.0`
+   - Export `BpkBackgroundImageProps` prop from`BpkBackgroundImage` component and `bpk-component-image` package.
+
 # 2020-11-18
 
 **Fixed:**

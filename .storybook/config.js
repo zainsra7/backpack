@@ -55,6 +55,7 @@ addDecorator(story => (
 configure(() => {
   require('../packages/bpk-animate-height/stories');
   require('../packages/bpk-component-accordion/stories');
+  require('../packages/bpk-component-aria-live/stories');
   require('../packages/bpk-component-autosuggest/stories');
   require('../packages/bpk-component-badge/stories');
   require('../packages/bpk-component-banner-alert/stories');
@@ -95,8 +96,8 @@ configure(() => {
   require('../packages/bpk-component-modal/stories');
   require('../packages/bpk-component-navigation-bar/stories');
   require('../packages/bpk-component-navigation-stack/stories');
-  require('../packages/bpk-component-overlay/stories');
   require('../packages/bpk-component-nudger/stories');
+  require('../packages/bpk-component-overlay/stories');
   require('../packages/bpk-component-pagination/stories');
   require('../packages/bpk-component-panel/stories');
   require('../packages/bpk-component-paragraph/stories');
@@ -110,6 +111,7 @@ configure(() => {
   require('../packages/bpk-component-scrollable-calendar/stories');
   require('../packages/bpk-component-section-list/stories');
   require('../packages/bpk-component-select/stories');
+  require('../packages/bpk-component-skip-link/stories');
   require('../packages/bpk-component-slider/stories');
   require('../packages/bpk-component-spinner/stories');
   require('../packages/bpk-component-star-rating/stories');

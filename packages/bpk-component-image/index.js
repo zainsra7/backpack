@@ -16,14 +16,19 @@
  * limitations under the License.
  */
 
+/* @flow strict */
+
 import BpkImage from './src/BpkImage';
-import BpkBackgroundImage from './src/BpkBackgroundImage';
+import BpkBackgroundImage, {
+  type BpkBackgroundImageProps as Props,
+} from './src/BpkBackgroundImage';
 import withLazyLoading from './src/withLazyLoading';
 import withLoadingBehavior from './src/withLoadingBehavior';
 import BORDER_RADIUS_STYLES from './src/BpkImageBorderRadiusStyles';
 
-export default BpkImage;
+export type BpkBackgroundImageProps = Props;
 
+export default BpkImage;
 export {
   BpkBackgroundImage,
   withLazyLoading,

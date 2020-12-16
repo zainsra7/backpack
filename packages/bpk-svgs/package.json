@@ -1,6 +1,6 @@
 {
   "name": "bpk-svgs",
-  "version": "12.1.18",
+  "version": "12.2.4",
   "description": "Backpack's library of SVG's.",
   "license": "Apache-2.0",
   "repository": {
@@ -15,8 +15,8 @@
   "scripts": {
     "svgs": "gulp clean && gulp"
   },
-  "gitHead": "a6910b1b5068590c7ba3691bedeb5818160cc477",
+  "gitHead": "02a5949a3a8de21512e51c9f067087410ac521e6",
   "devDependencies": {
-    "bpk-tokens": "^36.0.1"
+    "bpk-tokens": "^36.0.2"
   }
 }
